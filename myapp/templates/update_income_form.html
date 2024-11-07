@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Income</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Update Income</h1>
+        <form method="post" class="bg-light p-4 rounded shadow-sm">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="income_category" class="form-label">Income Category:</label>
+                <select name="income_category" id="income_category" class="form-select" required>
+                    <option value="" disabled>Select a category</option>
+                    {% for category, display_name in income.INCOME_CATEGORIES %}
+                        <option value="{{ category }}" {% if income.income_category == category %}selected{% endif %}>
+                            {{ display_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="income_source" class="form-label">Income Source:</label>
+                <input type="text" name="income_source" id="income_source" class="form-control" value="{{ income.income_source }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="income_amount" class="form-label">Income Amount:</label>
+                <input type="number" name="income_amount" id="income_amount" class="form-control" step="0.01" value="{{ income.income_amount }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="income_date" class="form-label">Income Date:</label>
+                <input type="date" name="income_date" id="income_date" class="form-control" value="{{ income.income_date|date:'Y-m-d' }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="income_description" class="form-label">Income Description:</label>
+                <textarea name="income_description" id="income_description" class="form-control">{{ income.income_description }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{% url 'income_list' %}" class="btn btn-secondary ms-2">Back to Income List</a>
+        </form>
+    </div>
+</body>
+</html>

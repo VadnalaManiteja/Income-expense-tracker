@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Purchases Form{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+  <h2>Enter Purchase</h2>
+  <form method="POST" action="{% url 'add_purchases' %}">
+    {% csrf_token %}
+    <div class="mb-3 mt-3">
+      <label for="vendorName">Vendor Name:</label>
+      <input type="text" class="form-control" id="vendorName" placeholder="Enter vendor name" name="vendorName" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="purchaseCategory">Category:</label>
+      <select class="form-select" id="purchaseCategory" name="purchaseCategory" required>
+        <option selected disabled>Select a category</option>
+        <option value="Office Supplies">Office Supplies</option>
+        <option value="Equipment">Equipment</option>
+        <option value="Utilities">Utilities</option>
+        <option value="Raw Materials">Raw Materials</option>
+        <option value="Miscellaneous">Miscellaneous</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="purchaseDate">Purchase Date:</label>
+      <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="productName">Product/Service Name:</label>
+      <input type="text" class="form-control" id="productName" placeholder="Enter product or service name" name="productName" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="quantity">Quantity:</label>
+      <input type="number" class="form-control" id="quantity" placeholder="Enter quantity" name="quantity" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="amount">Amount:</label>
+      <input type="number" class="form-control" id="amount" placeholder="Enter amount" name="amount" step="0.01" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="paymentStatus">Payment Status:</label>
+      <select class="form-select" id="paymentStatus" name="paymentStatus" required>
+        <option selected disabled>Select payment status</option>
+        <option value="Paid">Paid</option>
+        <option value="Unpaid">Unpaid</option>
+        <option value="Partial">Partial</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="description">Description:</label>
+      <textarea class="form-control" id="description" rows="3" placeholder="Optional description of the purchase" name="description"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}
