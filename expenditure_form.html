@@ -1,0 +1,42 @@
+<!-- expenditure-form.html -->
+{% extends 'base.html' %}
+
+{% block title %}Expenditure Form{% endblock %}
+
+{% block content %}
+  <h2>Enter Expenditure</h2>
+  <form method="POST" action="{% url 'add_expenditure' %}">
+    {% csrf_token %}
+    <div class="mb-3 mt-3">
+      <label for="Category">Category:</label>
+      <select class="form-select" id="Category" name="category">
+        <option selected disabled>Select a category</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Utilities">Utilities</option>
+        <option value="Housing">Housing</option>
+        <option value="Subscriptions">Subscriptions</option>
+        <option value="Health care">Health care</option>
+        <option value="Donations">Donations</option>
+        <option value="Entertainment">Entertainment</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="Type">Type:</label>
+      <input type="text" class="form-control" id="Type" placeholder="Enter type" name="type">
+    </div>
+
+    <div class="mb-3">
+      <label for="Date">Date:</label>
+      <input type="date" class="form-control" id="Date" name="date">
+    </div>
+
+    <div class="mb-3">
+      <label for="Amount">Amount:</label>
+      <input type="number" class="form-control" id="Amount" placeholder="Enter amount" name="amount">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

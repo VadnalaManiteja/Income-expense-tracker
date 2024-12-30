@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Income Form{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+  <h2>Enter Income</h2>
+  <form method="POST" action="{% url 'add_income' %}">
+    {% csrf_token %} 
+    <div class="mb-3 mt-3">
+      <label for="incomeCategory">Income Category:</label>
+      <select class="form-select" id="incomeCategory" name="incomeCategory">
+        <option selected disabled>Select an income category</option>
+        <option value="Salary/Wages">Salary/Wages</option>
+        <option value="Business Income">Business Income</option>
+        <option value="Rental Income">Rental Income</option>
+        <option value="Investment Income">Investment Income</option>
+        <option value="Pension/Retirement Income">Pension/Retirement Income</option>
+        <option value="Interest Income">Interest Income</option>
+        <option value="Royalties">Royalties</option>
+        <option value="Freelance/Contractor Income">Freelance/Contractor Income</option>
+        <option value="Government Benefits">Government Benefits</option>
+        <option value="Dividends">Dividends</option>
+        <option value="Capital Gains">Capital Gains</option>
+        <option value="Annuities">Annuities</option>
+        <option value="Gifts/Inheritance">Gifts/Inheritance</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="incomeSource">Source:</label>
+      <input type="text" class="form-control" id="incomeSource" placeholder="Enter source of income" name="incomeSource">
+    </div>
+    <div class="mb-3">
+      <label for="incomeAmount">Amount:</label>
+      <input type="number" class="form-control" id="incomeAmount" placeholder="Enter amount" name="incomeAmount">
+    </div>
+    <div class="mb-3">
+      <label for="incomeDate">Date:</label>
+      <input type="date" class="form-control" id="incomeDate" name="incomeDate">
+    </div>
+    <div class="mb-3">
+      <label for="incomeDescription">Description:</label>
+      <textarea class="form-control" id="incomeDescription" rows="3" placeholder="Optional description" name="incomeDescription"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}
